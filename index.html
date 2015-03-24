@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Node Intro</title>
+
+    <link rel="stylesheet" href="reveal.js/css/reveal.min.css">
+	<!--<link rel="stylesheet" href="reveal.js/css/print/pdf.min.css"> -->
+
+	<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="external/zenburn.css">
+
+    <link rel="stylesheet" href="external/little-console.css" id="theme">
+	<link rel="stylesheet" href="custom.css" id="theme">
+	<link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+
+</head>
+
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section>
+<span data-markdown>
+<script type="text/template">
+# Exercise 1
+
+An introduction
+</script>
+</span>
+
+<br>
+
+</section>
+
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  Our minimal HTML
+</script>
+</span>
+<pre><code class="xml">&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;script src=&quot;ntseq.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</section>
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  HTML: adding an input box
+</script>
+</span>
+<div style="float: left; width: 75%">
+<pre>
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;script src=&quot;ntseq.js&quot;&gt;&lt;/script&gt;
+</pre>
+<pre><code class="xml">&lt;textarea id=&quot;txt-input&quot;&gt;
+AAACCTTTTAAAAA
+&lt;/textarea&gt;
+</code></pre>
+</div>
+<div style="float: left; width: 25%; margin-top: 80px;">
+	<textarea>AAACCTTTTAAAAA</textarea>
+</div>
+</section>
+
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  HTML: adding a button
+</script>
+</span>
+<div style="float: left; width: 75%">
+<pre>
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;script src=&quot;ntseq.js&quot;&gt;&lt;/script&gt;
+&lt;textarea id=&quot;txt-input&quot;&gt;
+AAACCTTTTAAAAA
+&lt;/textarea&gt;
+</pre>
+<pre><code class="xml">&lt;p&gt;
+	&lt;button id=&quot;btn-convert&quot;&gt;Convert&lt;/button&gt;
+&lt;/p&gt;
+</code></pre>
+</div>
+<div style="float: left; width: 25%; margin-top: 80px;">
+	<textarea>AAACCTTTTAAAAA</textarea>
+	<button>Convert</button>
+</div>
+</section>
+
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  HTML: adding an output box
+</script>
+</span>
+<div style="float: left; width: 75%">
+<pre>
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;script src=&quot;ntseq.js&quot;&gt;&lt;/script&gt;
+&lt;textarea id=&quot;txt-input&quot;&gt;
+AAACCTTTTAAAAA
+&lt;/textarea&gt;
+&lt;p&gt;
+  &lt;button id=&quot;btn-convert&quot;&gt;Convert&lt;/button&gt;
+&lt;/p&gt;
+</pre>
+<pre><code class="xml">&lt;textarea id=&quot;txt-output&quot;&gt;
+&lt;/textarea&gt;
+</code></pre>
+</div>
+<div style="float: left; width: 25%; margin-top: 80px;">
+	<textarea>AAACCTTTTAAAAA</textarea>
+	<p>
+		<button>Convert</button>
+	</p>
+	<textarea>
+	</textarea>
+</div>
+</section>
+
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  JS: requiring
+</script>
+</span>
+<br />
+<pre>
+</pre>
+<pre><code class="js">var nt = require("ntseq");
+</code></pre>
+</section>
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  JS: querying the DOM
+</script>
+</span>
+<br />
+<pre>var nt = require("ntseq");
+</pre>
+<pre><code class="js">var input = document.getElementById("txt-input");
+var output = document.getElementById("txt-output");
+var btn = document.getElementById("btn-convert");
+</code></pre>
+</section>
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  JS: adding events
+</script>
+</span>
+<br />
+<pre>var nt = require("ntseq");
+var input = document.getElementById("txt-input");
+var output = document.getElementById("txt-output");
+var btn = document.getElementById("btn-convert");
+</pre>
+<pre><code class="js">input.addEventListener("change", updateBox);
+btn.addEventListener("click", updateBox);
+</code></pre>
+</section>
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  JS: parsing and updating
+</script>
+</span>
+<br />
+<pre>var nt = require("ntseq");
+var input = document.getElementById("txt-input");
+var output = document.getElementById("txt-output");
+var btn = document.getElementById("btn-convert");
+input.addEventListener("change", updateBox);
+btn.addEventListener("click", updateBox);
+</pre>
+<pre><code class="js">function updateBox(){
+  var seq = new nt.Seq();
+  seq.read(i1.value);
+  i2.value =  seq.translate();
+}
+</code></pre>
+</section>
+
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  Result
+</script>
+</span>
+<a class="jsbin-embed" href="http://jsbin.com/titiyu/1/embed?js,output&height=500px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+##  More about NTSeq
+
+```
+var seq = new nt.Seq()
+seq.read(“AGCGT”)
+```
+
+* translate()
+* fractionalContent()
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+##  BioJS [parsers](https://github.com/biojs/biojs-io-parser)
+
+<br> 
+
+* `parse` (Str) &#10137; Object
+* `read` (URL) &#10137; `parse`
+* `write` (Object) &#10137; (Str)
+</script>
+</section>
+
+
+</div>
+<div class='footer' style="width: 100%">
+	<a id="biojs-logo" style="float: left; margin-left: 5%" href="http://biojs.net">
+		<img alt="BioJS logo - a registry of biological visualizations" src="img/biojs2.png" width="140" height="40" style="float: left">
+	</a>
+	<a href="/" class="home" title="VIZBI home page" style="color: #F4B;    font-size: 2em; font-weight: bold;text-shadow: 0px 0px 8px; float: right; margin-right: 10%">VIZBI 15</a>
+  </div>
+</div>
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+
+    // Display controls in the bottom right corner
+    controls: false,
+
+    // Display a presentation progress bar
+    progress: true,
+
+    // Push each slide change to the browser history
+    history: true,
+
+    // Enable keyboard shortcuts for navigation
+    keyboard: true,
+
+    // Enable the slide overview mode
+    overview: true,
+
+    // Vertical centering of slides
+    center: false,
+
+    // Loop the presentation
+    loop: false,
+
+    // Change the presentation direction to be RTL
+    rtl: false,
+
+    // Number of milliseconds between automatically proceeding to the
+    // next slide, disabled when set to 0, this value can be overwritten
+    // by using a data-autoslide attribute on your slides
+    autoSlide: 0,
+
+    // Enable slide navigation via mouse wheel
+    mouseWheel: false,
+
+    // Apply a 3D roll to links on hover
+    rollingLinks: false,
+
+    // Transition style
+    transition: 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+    dependencies: [
+        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+        // Interreveal.js/pret Markdown in <section> elements
+        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/markdown/markdown.js', 
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+          } },
+
+        // Syntareveal.js/x highlight for <code> elements
+        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom reveal.js/in and out with Alt+click
+        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Speakreveal.js/er notes
+        //{ src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Remotreveal.js/e control your reveal.js presentation using a touch device
+        // { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+
+  });
+</script>
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+if( window.location.search.match( /print-pdf/gi ) ) {
+  var link = document.createElement( 'link' );
+  link.rel = 'stylesheet'; //link.type = 'text/css'; link.media = 'print';
+  link.href = 'reveal.js/css/print/pdf.css';
+  document.getElementsByTagName( 'head' )[0].appendChild( link );
+  document.body.style.background = "white";
+}
+</script>
+</body>
