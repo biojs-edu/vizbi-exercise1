@@ -36,6 +36,30 @@ An introduction
 
 </section>
 
+<section>
+<span data-markdown>
+<script type="text/template">
+## Exercise 1 
+
+* learn `browserify`
+* example use-case: [NtSeq](https://github.com/keithwhor/NtSeq)
+  - build a small conversion tool (DNA -> AA)
+* opt.: get in touch with BioJS parsers
+</script>
+</span>
+
+<br>
+</section>
+
+<section>
+<span data-markdown>
+<script type="text/template">
+##  Sneak
+</script>
+</span>
+<a class="jsbin-embed" href="http://jsbin.com/titiyu/1/embed?output&height=500px">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+</section>
+
 
 <section>
 <span data-markdown>
@@ -51,7 +75,7 @@ An introduction
 <section>
 <span data-markdown>
 <script type="text/template">
-##  HTML: adding an input box
+##  HTML: input box
 </script>
 </span>
 <div style="float: left; width: 75%">
@@ -73,7 +97,7 @@ AAACCTTTTAAAAA
 <section>
 <span data-markdown>
 <script type="text/template">
-##  HTML: adding a button
+##  HTML: convert button
 </script>
 </span>
 <div style="float: left; width: 75%">
@@ -99,7 +123,7 @@ AAACCTTTTAAAAA
 <section>
 <span data-markdown>
 <script type="text/template">
-##  HTML: adding an output box
+##  HTML: output box
 </script>
 </span>
 <div style="float: left; width: 75%">
@@ -131,7 +155,7 @@ AAACCTTTTAAAAA
 <section>
 <span data-markdown>
 <script type="text/template">
-##  JS: requiring
+##  JS: load dependencies
 </script>
 </span>
 <br />
@@ -209,13 +233,19 @@ btn.addEventListener("click", updateBox);
 <script type="text/template">
 ##  More about NTSeq
 
+<br>
+
 ```
 var seq = new nt.Seq()
-seq.read(“AGCGT”)
+seq.read(“ACG”)
+seq.translate() // T
 ```
 
-* translate()
-* fractionalContent()
+* `complement()`
+* `sequence()` (raw seq. string)
+* `translate()`
+* `translate(1)` (1 nt offset)
+* `fractionalContent()`
 </script>
 </section>
 
